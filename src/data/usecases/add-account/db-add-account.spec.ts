@@ -10,7 +10,7 @@ const makeEncrypter = (): Encrypter => {
   class EncrypterStub implements Encrypter {
     async encrypt (value: string): Promise<string> {
       // eslint-disable-next-line @typescript-eslint/return-await
-      return new Promise(resolve => resolve('hashed_password'))
+      return new Promise((resolve) => resolve('hashed_password'))
     }
   }
   return new EncrypterStub()
@@ -42,7 +42,11 @@ describe('DbAddAccount Usecase', () => {
   test('Should throw if Encrypter throws', async () => {
     const { sut, encrypterStub } = makeSut()
     // mockando o encrypter pra ele retornar uma exceção
-    jest.spyOn(encrypterStub, 'encrypt').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    jest
+      .spyOn(encrypterStub, 'encrypt')
+      .mockReturnValueOnce(
+        new Promise((resolve, reject) => reject(new Error()))
+      )
     const accountData = {
       name: 'valid_name',
       email: 'valid_email',
@@ -50,6 +54,6 @@ describe('DbAddAccount Usecase', () => {
     }
     const promise = sut.add(accountData)
     // dizendo que eu espero que ele retorne um error
-    expect(promise).toThrow()
+    await expect(promise).rejects.toThrow()
   })
 })
