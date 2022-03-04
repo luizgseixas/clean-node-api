@@ -16,6 +16,8 @@ const makeEncrypter = (): Encrypter => {
   return new EncrypterStub()
 }
 
+// test
+
 const makeSut = (): SutTypes => {
   const encrypterStub = makeEncrypter()
   const sut = new DbAddAccount(encrypterStub)
