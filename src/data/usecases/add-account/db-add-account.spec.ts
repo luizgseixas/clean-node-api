@@ -4,7 +4,6 @@ import { AccountModel, AddAccountModel, AddAccountRepository, Encrypter } from '
 const makeEncrypter = (): Encrypter => {
   class EncrypterStub implements Encrypter {
     async encrypt (value: string): Promise<string> {
-      // eslint-disable-next-line @typescript-eslint/return-await
       return new Promise((resolve) => resolve('hashed_password'))
     }
   }
@@ -20,7 +19,6 @@ const makeAddAccountRepository = (): AddAccountRepository => {
         email: 'valid_email',
         password: 'hashed_password'
       }
-      // eslint-disable-next-line @typescript-eslint/return-await
       return new Promise((resolve) => resolve(fakeAccount))
     }
   }
