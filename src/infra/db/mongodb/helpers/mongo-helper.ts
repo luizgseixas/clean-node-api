@@ -6,7 +6,7 @@ export const MongoHelper = {
 
   async connect (url: string): Promise<void> {
     // variavel setada pela lib @shelf/jest-mongodb
-    this.client = await MongoClient.connect(url)
+    this.client = await MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true })
   },
 
   async disconnect (): Promise<void> {
