@@ -17,6 +17,7 @@ export const MongoHelper = {
   },
 
   async getCollection (name: string): Promise<Collection> {
+    // client? faz com que, caso o client estiver null ele também caia na sentença
     if (!this.client?.isConnected()) {
       await this.connect(this.url)
     }
