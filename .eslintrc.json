@@ -8,6 +8,7 @@
     "space-before-function-paren": ["error", "always"],
     "@typescript-eslint/space-before-function-paren": ["error", "always"],
     "@typescript-eslint/return-await": "off",
-    "@typescript-eslint/no-misused-promises": "off"
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/no-floating-promises": "off"
   }
 }
