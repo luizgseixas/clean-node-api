@@ -44,7 +44,6 @@ describe('Account Mongo Repository', () => {
       email: 'any_email@mail.com',
       password: 'any_password'
     })
-
     const account = await sut.loadByEmail('any_email@mail.com')
     // verifica se o account não é null, undefined ou false
     expect(account).toBeTruthy()
@@ -59,5 +58,21 @@ describe('Account Mongo Repository', () => {
     const account = await sut.loadByEmail('any_email@mail.com')
     // verifica se o account não é null, undefined ou false
     expect(account).toBeFalsy()
+  })
+
+  test('Should update the account accessToken on updateAccessToken success', async () => {
+    const sut = makeSut()
+    const res = await accountCollection.insertOne({
+      name: 'any_name',
+      email: 'any_email@mail.com',
+      password: 'any_password'
+    })
+    const fakeAccount = res.ops[0]
+    expect(fakeAccount.accessToken).toBeFalsy()
+    await sut.updateAccessToken(fakeAccount._id, 'any_token')
+    const account = await accountCollection.findOne({ _id: fakeAccount._id })
+    // verifica se o account não é null, undefined ou false
+    expect(account).toBeTruthy()
+    expect(account.accessToken).toBe('any_token')
   })
 })
