@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3'
 
 services:
 
@@ -11,12 +11,17 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: mongoDB2022!
     ports:
       - 27017:27017
+    volumes:
+      - ./data:/data/db
 
-  mongo-express:
-    image: mongo-express
+  api:
+    container_name: clean-node-api
+    build: .
     restart: always
+    command: npm start
     ports:
-      - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: mongoDB2022!
+      - 5050:5050
+    volumes:
+      - ./dist:/usr/src/clean-node-api/dist
+    links:
+      - mongo
