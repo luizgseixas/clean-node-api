@@ -4,7 +4,8 @@
     "module": "commonjs",
     "target": "es2019",
     "esModuleInterop": true,
-    "sourceMap": true // faz um mapeamento de qual arquivo typesscript ele usa, serve para fazer o debug do código em tempo real de execusão
+    // "sourceMap": true, // faz um mapeamento de qual arquivo typesscript ele usa, serve para fazer o debug do código em tempo real de execusão
+    "rootDir": "src"
   },
   "include": [
     "src"
