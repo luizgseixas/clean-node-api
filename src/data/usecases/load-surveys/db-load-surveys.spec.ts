@@ -56,6 +56,18 @@ describe('DbLoadSurveys', () => {
     expect(loadAllSpy).toHaveBeenCalled()
   })
 
+  test('Should throw if DeLoadSurveysRepository throws', async () => {
+    const { sut, loadSurveysRepositoryStub } = makeSut()
+    // mockando o hasher pra ele retornar uma exceção
+    jest
+      .spyOn(loadSurveysRepositoryStub, 'loadAll')
+      .mockReturnValueOnce(
+        new Promise((resolve, reject) => reject(new Error()))
+      )
+    const promise = sut.load()
+    await expect(promise).rejects.toThrow()
+  })
+
   test('Should return a list of Surveys on success', async () => {
     const { sut } = makeSut()
     const surveys = await sut.load()
