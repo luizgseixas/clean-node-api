@@ -20,6 +20,8 @@ services:
     image: clean-node-api
     restart: always
     command: npm run debug
+    environment:
+      - MONGO_URL=mongodb://root:mongoDB2022!@mongo:27017/clean?authSource=admin
     volumes:
       - ./dist/:/usr/src/clean-node-api/dist/
       - ./package.json:/usr/src/clean-node-api/package.json
