@@ -9,7 +9,7 @@
     "debug": "npx nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/main/server.js",
     "up": "yarn build && docker-compose up -d mongo && docker-compose up api",
     "down": "docker-compose down",
-    "test": "jest --passWithNoTests --noStackTrace --silent --runInBand --detectOpenHandles",
+    "test": "jest --passWithNoTests --noStackTrace --silent --runInBand --detectOpenHandles --no-cache",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
