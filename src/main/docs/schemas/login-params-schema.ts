@@ -8,5 +8,5 @@ export const loginParamsSchema = {
       type: 'string'
     }
   },
-  required: ['ewmail', 'password']
+  required: ['email', 'password']
 }

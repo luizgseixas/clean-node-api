@@ -1,3 +1,4 @@
+export * from './signup-params-schema'
 export * from './account-schema'
 export * from './api-key-auth-schema'
 export * from './login-params-schema'
